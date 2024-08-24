@@ -1,4 +1,4 @@
-import "package:j1_logger/logger.dart";
+import "package:j1_logger/j1_logger.dart";
 import "package:logger/logger.dart";
 import "package:mocktail/mocktail.dart";
 import "package:test/test.dart";
@@ -9,6 +9,10 @@ void main() {
   final logger = MockLogger();
   final localLogger = LocalLogger(logger: logger);
 
+  setUpAll(() {
+    locator.registerSingleton<J1Logger>(localLogger);
+  });
+
   setUp(() {
     reset(logger);
   });
@@ -17,9 +21,9 @@ void main() {
     test("sets default params and handles all three log types", () {
       when(() => logger.i(any())).thenReturn(null);
 
-      localLogger.setDefaultParams(params: {"test": "testValue"});
+      J1Logger.setParams(params: {"test": "testValue"});
 
-      localLogger.log(name: "testEvent", params: {"testParam": "testParamValue"});
+      J1Logger.log(name: "testEvent", params: {"testParam": "testParamValue"});
       verify(
         () => logger.i({
           "test": "testValue",
@@ -28,7 +32,7 @@ void main() {
         }),
       ).called(1);
 
-      localLogger.logRepository(name: "event", repository: "testRepository", params: {"testParam": "testParamValue"});
+      J1Logger.repository(name: "event", repository: "testRepository", params: {"testParam": "testParamValue"});
       verify(
         () => logger.i({
           "test": "testValue",
@@ -38,7 +42,7 @@ void main() {
         }),
       ).called(1);
 
-      localLogger.logBloc(name: "event", bloc: "testBloc", params: {"testParam": "testParamValue"});
+      J1Logger.bloc(name: "event", bloc: "testBloc", params: {"testParam": "testParamValue"});
       verify(
         () => logger.i({
           "test": "testValue",
@@ -48,7 +52,7 @@ void main() {
         }),
       ).called(1);
 
-      localLogger.logUi(name: "event", page: "testPage", params: {"testParam": "testParamValue"});
+      J1Logger.ui(name: "event", page: "testPage", params: {"testParam": "testParamValue"});
       verify(
         () => logger.i({
           "test": "testValue",

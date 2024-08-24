@@ -1,4 +1,4 @@
-import "package:j1_logger/logger.dart";
+import "package:j1_logger/j1_logger.dart";
 import "package:logger/logger.dart";
 
 class LocalLogger extends J1Logger {
@@ -16,7 +16,7 @@ class LocalLogger extends J1Logger {
   }
 
   @override
-  void log({required String name, Map<String, Object>? params}) {
+  void logDefault({required String name, Map<String, Object>? params}) {
     logger.i({..._defaultParams, ...params ?? {}, "name": name});
   }
 }
