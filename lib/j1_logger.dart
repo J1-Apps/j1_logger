@@ -6,13 +6,13 @@ export "local_logger.dart";
 
 import "package:get_it/get_it.dart";
 
-final locator = GetIt.instance;
+final _locator = GetIt.instance;
 
 /// A class that handles event logging.
 abstract class J1Logger {
   /// Sets the default parameters that should be passed with every logged event.
   static void setParams({required Map<String, Object> params}) {
-    locator.get<J1Logger>().setDefaultParams(params: params);
+    _locator.get<J1Logger>().setDefaultParams(params: params);
   }
 
   /// Logs an event with the given [name], and [params].
@@ -20,7 +20,7 @@ abstract class J1Logger {
     required String name,
     Map<String, Object>? params,
   }) {
-    locator.get<J1Logger>().logDefault(name: name, params: params);
+    _locator.get<J1Logger>().logDefault(name: name, params: params);
   }
 
   /// Logs an event with the given [name], [page], and [params].
@@ -31,7 +31,7 @@ abstract class J1Logger {
     required String page,
     Map<String, Object> params = const {},
   }) {
-    locator.get<J1Logger>().logUi(name: name, page: page, params: params);
+    _locator.get<J1Logger>().logUi(name: name, page: page, params: params);
   }
 
   /// Logs an event with the given [name], [repository], and [params].
@@ -42,7 +42,7 @@ abstract class J1Logger {
     required String bloc,
     Map<String, Object> params = const {},
   }) {
-    locator.get<J1Logger>().logBloc(name: name, bloc: bloc, params: params);
+    _locator.get<J1Logger>().logBloc(name: name, bloc: bloc, params: params);
   }
 
   /// Logs an event with the given [name], [repository], and [params].
@@ -53,7 +53,7 @@ abstract class J1Logger {
     required String repository,
     Map<String, Object> params = const {},
   }) {
-    locator.get<J1Logger>().logRepository(name: name, repository: repository, params: params);
+    _locator.get<J1Logger>().logRepository(name: name, repository: repository, params: params);
   }
 
   const J1Logger();
