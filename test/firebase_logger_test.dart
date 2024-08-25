@@ -1,16 +1,19 @@
 import "package:firebase_analytics/firebase_analytics.dart";
+import "package:get_it/get_it.dart";
 import "package:j1_logger/j1_logger.dart";
 import "package:mocktail/mocktail.dart";
 import "package:test/test.dart";
 
 class MockFirebaseAnalytics extends Mock implements FirebaseAnalytics {}
 
+final _locator = GetIt.instance;
+
 void main() {
   final analytics = MockFirebaseAnalytics();
   final logger = FirebaseLogger(analytics: analytics);
 
   setUpAll(() {
-    locator.registerSingleton<J1Logger>(logger);
+    _locator.registerSingleton<J1Logger>(logger);
   });
 
   setUp(() {
