@@ -34,9 +34,9 @@ abstract class J1Logger {
     _locator.get<J1Logger>().logUi(name: name, page: page, params: params);
   }
 
-  /// Logs an event with the given [name], [repository], and [params].
+  /// Logs an event with the given [name], [bloc], and [params].
   ///
-  /// The [repository] argument will be added to the [params] map with the key 'bloc'.
+  /// The [bloc] argument will be added to the [params] map with the key 'bloc'.
   static void bloc({
     required String name,
     required String bloc,
