@@ -1,4 +1,4 @@
-library j1_logger;
+library;
 
 export "firebase_logger.dart";
 export "j1_logger.dart";
